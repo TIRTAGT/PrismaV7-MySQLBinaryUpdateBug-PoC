@@ -1,0 +1,13 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model User {
+  id Bytes @id @db.Binary(16)
+  name String
+}

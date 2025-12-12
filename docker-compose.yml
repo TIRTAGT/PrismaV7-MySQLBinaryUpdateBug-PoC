@@ -1,0 +1,38 @@
+services:
+  poc:
+    build:
+      context: ./poc
+    env_file:
+      - ./.env
+    environment:
+      - DATABASE_HOST=mysql
+    depends_on:
+      - mysql
+    restart: no
+    networks:
+      - default
+
+  mysql:
+    build:
+      context: .docker/mysql
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DATABASE_NAME}
+      - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD}
+    networks:
+      - default
+    ports:
+      - "${DATABASE_PORT}:3306"
+
+volumes:
+  mysql_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/.docker/mysql/data
+      o: bind
+
+networks:
+  default:
+    driver: bridge
