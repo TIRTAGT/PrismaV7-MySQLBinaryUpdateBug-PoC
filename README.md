@@ -71,6 +71,12 @@ clientVersion: '7.1.0'
 }
 ```
 
+which is now fixed on Prisma v7.2.0 with pull request [#28913](https://github.com/prisma/prisma/pull/28913):
+
+![image showing the bug is fixed](./fixed.png)
+
+
+
 ----
 
 ## Starting Everything Up
